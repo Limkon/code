@@ -719,7 +719,7 @@ set _acti=0
 set _gent=0
 
 ::  ÒªÆôÓÃ LockBox ·½·¨£¬ÇëÊ¹ÓÃ /k ²ÎÊıÔËĞĞ½Å±¾»òÔÚÏÂÃæµÄĞĞÖĞ½« 0 ¸ü¸ÄÎª 1
-::  ÄãĞèÒª½«´ËÑ¡ÏîÓë¼¤»î»òÃÅÆ±Éú³ÉÒ»ÆğÊ¹ÓÃ¡£
+::  ÄãĞèÒª½«´ËÑ¡ÏîÓë¼¤»î»òÆ±Ö¤Éú³ÉÒ»ÆğÊ¹ÓÃ¡£
 ::  ÀıÈç£¬
 ::  HWID_Activation.cmd /a /k
 ::  HWID_Activation.cmd /g /k
@@ -892,7 +892,7 @@ echo:
 call :dk_color2 %_White% "                [1] HWID ¼¤»î             " !_method!
 echo                 ____________________________________________
 echo:
-call :dk_color2 %_White% "                [2] Éú³ÉÃÅÆ±              " !_method!
+call :dk_color2 %_White% "                [2] Éú³ÉÆ±Ö¤              " !_method!
 echo                 ____________________________________________
 echo:      
 echo                 [3] ¸ü¸Ä·½·¨
@@ -913,7 +913,7 @@ set _lock=0
 cls
 echo:
 call :dk_color %_Green% " Downlevel ·½·¨£º"
-echo  ËüÒÔ×î¼òµ¥µÄ¹ı³Ì´´½¨ÓÃÓÚ¼¤»îµÄ downlevelGTkey ÃÅÆ±¡£
+echo  ËüÒÔ×î¼òµ¥µÄ¹ı³Ì´´½¨ÓÃÓÚ¼¤»îµÄ downlevelGTkey Æ±Ö¤¡£
 echo:
 call :dk_color %_Yellow% " LockBox ·½·¨£º"
 echo  Ëü´´½¨ÁË¸üºÃµØÄ£ÄâÕæÊµ¼¤»îµÄ clientLockboxKey Æ±Ö¤£¬
@@ -1148,7 +1148,7 @@ echo:
 echo [%winos% ^| %winbuild% ^| SKU£º%osSKU%]
 echo ÔÚ×«Ğ´´ËÄÚÈİÊ±£¬´Ë²úÆ·²»Ö§³Ö HWID ¼¤»î¡£
 echo:
-echo Now Ëü¿ÉÄÜ»áÒ²¿ÉÄÜ²»»á¼¤»îËü¡£
+echo ÏÖÔÚËü¿ÉÄÜ»á¼¤»î£¬Ò²¿ÉÄÜ²»»á¡£
 if %_unattended%==0 (
 echo:
 call :dk_color %_Yellow% "Çë°´ÈÎÒâ¼ü¼ÌĞøÖ´ĞĞ¡­¡­"
@@ -1262,7 +1262,7 @@ echo ÕıÔÚ¼ì²é WMI Query                      [³É¹¦]
 ::  °²×°ÃÜÔ¿
 
 echo:
-if defined changekey call :dk_color %Magenta% "Windows 10 Iot Enterprise LTSC 2021 Product Key Is Selected For HWID ¼¤»î"&echo:
+if defined changekey call :dk_color %Magenta% "ÒÑÑ¡Ôñ Windows 10 IoT Enterprise LTSC 2021 ²úÆ·ÃÜÔ¿ÓÃÓÚ HWID ¼¤»î"&echo:
 
 set _partial=
 if defined key set _ipartial=%key:~-5%
@@ -1438,7 +1438,7 @@ find /i "clientLockboxKey" "%temp_%\GenuineTicket.xml" >nul && (
 echo ÕıÔÚÉú³É GenuineTicket.xml              [³É¹¦] [clientLockboxKey Æ±Ö¤]
 ) || (
 call :dk_color %Red% "Éú³É GenuineTicket.xml                  [Ê§°Ü] [downlevelGTkey Æ±Ö¤ÒÑ´´½¨]ÕıÔÚÖĞÖ¹¡­¡­"
-call :dk_color %Magenta% "Try again / Restart system"
+call :dk_color %Magenta% "ÇëÖØÊÔ / ÖØÆôÏµÍ³"
 goto :dl_final
 )
 ) else (
@@ -2928,9 +2928,9 @@ if %winbuild% LSS 22483 wmic path %slp% where ID='%app%' call ReArmsku %nul%
 if %winbuild% GEQ 22483 %_psc% "$null=([WMI]'%slp%=''%app%''').ReArmsku()" %nul%
 
 if %errorlevel%==0 (
-echo ÕıÔÚÓ¦ÓÃ SKU-ID Rearm                   [³É¹¦]
+echo ÕıÔÚÓ¦ÓÃ SKU-ID ÊÚÈ¨ÖØÖÃ                [³É¹¦]
 ) else (
-call :dk_color %Red% "Ó¦ÓÃ SKU-ID Rearm                       [Ê§°Ü]"
+call :dk_color %Red% "Ó¦ÓÃ SKU-ID ÊÚÈ¨ÖØÖÃ                    [Ê§°Ü]"
 )
 
 echo:
@@ -4520,7 +4520,7 @@ set _tskinstalled=1
 set _dskinstalled=
 if exist "%ProgramData%\Online_KMS_Activation\Activate_dcm.cmd" (
 find /i "Ver:1.5" "%ProgramData%\Online_KMS_Activation\Activate_dcm.cmd" 1>nul && (
-reg query "HKCR\DesktopBackground\shell\Activate Windows - Office" %nul% && (
+reg query "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" %nul% && (
 set _dskinstalled=1
 )
 )
@@ -4535,9 +4535,10 @@ set _oldtsk=1
 
 set _olddsk=
 if not defined _dskinstalled (
-reg query "HKCR\DesktopBackground\shell\Activate Windows - Office" %nul% && (
+reg query "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" %nul% && (
 set _olddsk=1
 )
+if not defined _olddsk reg query "HKCR\DesktopBackground\shell\Activate Windows - Office" %nul% && (set _olddsk=1)
 )
 
 if defined _unattended (
@@ -4568,7 +4569,7 @@ if not defined _dskinstalled if not defined _olddsk echo.              [M] ×ÀÃæÉ
 echo.              [U] ÍêÕûĞ¶ÔØ
 echo.              _______________________________________________  
 echo.
-echo.                  Configure Activation:
+echo.                  ÅäÖÃ¼¤»î£º
 echo.
 if %_Debug%==0 (
 echo.              [D] ÆôÓÃµ÷ÊÔÄ£Ê½              [·ñ]
@@ -4905,7 +4906,7 @@ IF /I "%EditionID%"=="EnterpriseG" SET Win10Gov=1
 IF /I "%EditionID%"=="EnterpriseGN" SET Win10Gov=1
 
 :Main
-if defined EditionID (set "_winos=Windows %EditionID% edition") else (set "_winos=¼ì²âµ½ Windows")
+if defined EditionID (set "_winos=Windows %EditionID% °æ±¾") else (set "_winos=¼ì²âµ½ Windows")
 for /f "skip=2 tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v ProductName %_Nul6%') do if not errorlevel 1 set "_winos=%%b"
 set "nKMS=²»Ö§³Ö KMS ¼¤»î¡­¡­"
 set "nEval=ÆÀ¹À°æ±¾ÎŞ·¨¼¤»î¡£Çë°²×° Windows ²Ù×÷ÏµÍ³µÄÍêÕû°æ±¾¡£"
@@ -7491,14 +7492,19 @@ echo ÕıÔÚÉ¾³ı [ÎÄ¼ş] %ProgramData%\Online_KMS_Activation.cmd
 del /f /q "%ProgramData%\Online_KMS_Activation.cmd" %nul%
 )
 
+reg query "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" %nul% && (
+echo ÕıÔÚÉ¾³ı [×¢²á±í] HKCR\DesktopBackground\shell\¼¤»î Windows - Office
+Reg delete "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" /f %nul%
+)
 reg query "HKCR\DesktopBackground\shell\Activate Windows - Office" %nul% && (
-echo ÕıÔÚÉ¾³ı [×¢²á±í] HKCR\DesktopBackground\shell\Activate Windows - Office
+echo ÕıÔÚÉ¾³ı [×¢²á±í] ¾É°æ×ÀÃæÉÏÏÂÎÄ²Ëµ¥ (Activate Windows - Office)
 Reg delete "HKCR\DesktopBackground\shell\Activate Windows - Office" /f %nul%
 )
 
 reg query "%key%" /f Path /s | find /i "\Online_KMS_Activation_Script-Renewal" >nul && (set error_=1)
 reg query "%key%" /f Path /s | find /i "\Online_KMS_Activation_Script-Run_Once" >nul && (set error_=1)
 If exist "%windir%\Online_KMS_Activation_Script\" (set error_=1)
+reg query "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" >nul 2>&1 && (set error_=1)
 reg query "HKCR\DesktopBackground\shell\Activate Windows - Office" >nul 2>&1 && (set error_=1)
 if exist "%ProgramData%\Online_KMS_Activation.cmd" (set error_=1)
 
@@ -7585,6 +7591,7 @@ rmdir /s /q "%windir%\Online_KMS_Activation_Script\" %nul%
 
 set DelDeskCont=
 If exist "%ProgramData%\Online_KMS_Activation.cmd" (
+reg delete "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" /f %nul%
 reg delete "HKCR\DesktopBackground\shell\Activate Windows - Office" /f %nul%
 del /f /q "%ProgramData%\Online_KMS_Activation.cmd" %nul%
 if exist "%_dest%\Activate.cmd" del /f /q "%_dest%\Activate.cmd" %nul%
@@ -7687,6 +7694,7 @@ if defined _miss goto :RenDone
 
 If exist "%ProgramData%\Online_KMS_Activation.cmd" del /f /q "%ProgramData%\Online_KMS_Activation.cmd" %nul%
 
+reg delete "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" /f %nul%
 reg delete "HKCR\DesktopBackground\shell\Activate Windows - Office" /f %nul%
 
 if not exist "%_dest%\BIN\" md "%_dest%\BIN\" %nul%
@@ -7702,17 +7710,18 @@ copy /y /b "!_batf!" "%_dest%\Activate_dcm.cmd" %nul%
 call :createinfo.html
 title Ìí¼ÓÉÏÏÂÎÄ²Ëµ¥
 
-reg add "HKCR\DesktopBackground\shell\Activate Windows - Office" /v "Icon" /t REG_SZ /d "%SystemRoot%%\System32\shell32.dll,71" /f >nul 2>&1 || (set error_=1)
-reg add "HKCR\DesktopBackground\shell\Activate Windows - Office\command" /ve /d "%_dest%\Activate_dcm.cmd" /f %nul% || (set error_=1)
+reg add "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" /v "Icon" /t REG_SZ /d "%SystemRoot%%\System32\shell32.dll,71" /f >nul 2>&1 || (set error_=1)
+reg add "HKCR\DesktopBackground\shell\¼¤»î Windows - Office\command" /ve /d "%_dest%\Activate_dcm.cmd" /f %nul% || (set error_=1)
 
 If not exist "%_dest%\Activate_dcm.cmd" (set error_=1)
 If not exist "%_dest%\Info.html" (set error_=1)
 If not exist "%_dest%\BIN\cleanosppx64.exe" (set error_=1)
 If not exist "%_dest%\BIN\cleanosppx86.exe" (set error_=1)
 
-reg query "HKCR\DesktopBackground\shell\Activate Windows - Office" %nul% || (set error_=1)
+reg query "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" %nul% || (set error_=1)
 
 if defined error_ (
+reg delete "HKCR\DesktopBackground\shell\¼¤»î Windows - Office" /f %nul%
 reg delete "HKCR\DesktopBackground\shell\Activate Windows - Office" /f %nul%
 if exist "%_dest%\Activate_dcm.cmd" del /f /q "%_dest%\Activate_dcm.cmd" %nul%
 echo _________________________________________________________________
@@ -7729,7 +7738,7 @@ echo %_dest%\Activate_dcm.cmd
 echo %_dest%\Info.html
 echo.
 echo ÒÑÌí¼Ó×¢²á±íÏî£º
-echo HKCR\DesktopBackground\shell\Activate Windows - Office
+echo HKCR\DesktopBackground\shell\¼¤»î Windows - Office
 echo __________________________________________________________________________________________
 echo.
 call :_color %Green% "ÒÑ³É¹¦´´½¨ÔÚÏß KMS ¼¤»îµÄ×ÀÃæÉÏÏÂÎÄ²Ëµ¥Ïî¡£"
@@ -8168,7 +8177,7 @@ schtasks /delete /tn Online_KMS_Activation_Script-Run_Once /f %nul%
 :_taskend
 
 echo.
-echo Exiting
+echo ÕıÔÚÍË³ö
 echo ______________________________________________________________________
 
 if defined _tserror (exit /b 123456789) else (exit /b 0)
@@ -9378,11 +9387,11 @@ echo:             [2] ÒÉÄÑ½â´ğ×ÔÊöÎÄ¼ş    - KMS38
 echo:             [3] ÒÉÄÑ½â´ğ×ÔÊöÎÄ¼ş    - ÔÚÏß KMS
 echo:             ___________________________________________________      
 echo:                                                                      
-echo:             [4] Dism RestoreHealth                                   
-echo:             [5] SFC Scannow                                          
+echo:             [4] DISM ĞŞ¸´ÏµÍ³Ó³Ïñ                                    
+echo:             [5] SFC ÏµÍ³ÎÄ¼şÉ¨Ãè                                   
 echo:                                                                      
-echo:             [6] Windows Rearm - ÌØ¶¨ SKU ID
-echo:             [7] Office  Rearm - ÌØ¶¨ KMS SKU ID
+echo:             [6] Windows ÊÚÈ¨ÖØÖÃ - Ö¸¶¨ SKU ID
+echo:             [7] Office  ÊÚÈ¨ÖØÖÃ - Ö¸¶¨ KMS SKU ID
 echo:
 echo:             [8] ÇåÀí ClipSVC Ğí¿ÉÖ¤
 echo:             [9] ÖØ½¨Ğí¿ÉÁîÅÆ
@@ -9437,7 +9446,7 @@ call :_color2 %_White% "     " %Red% "ÕıÔÚ¼ì²é Internet Á¬½Ó           [Î´Á¬½Ó]"
 
 echo %line%
 echo:
-echo      Dism Ê¹ÓÃ Windows ¸üĞÂÀ´Ìá¹©ĞŞ¸´Ëğ»µËùĞèµÄÎÄ¼ş¡£
+echo      DISM Ê¹ÓÃ Windows ¸üĞÂÀ´Ìá¹©ĞŞ¸´Ëğ»µËùĞèµÄÎÄ¼ş¡£
 echo      Õâ½«ĞèÒª 5-15 ·ÖÖÓ»ò¸ü³¤Ê±¼ä¡­¡­
 echo %line%
 echo:
@@ -9527,7 +9536,7 @@ goto :at_back
 
 cls
 mode 98, 30
-title  Windows Rearm - ÌØ¶¨ SKU ID
+title  Windows ÊÚÈ¨ÖØÖÃ - Ö¸¶¨ SKU ID
 
 if %winbuild% LSS 9600 (
 %eline%
@@ -9541,7 +9550,7 @@ echo %line%
 echo:    
 echo      ×¢£º
 echo:
-echo       - Rearm ÓĞÖúÓÚ½â¾ö¼¤»îÎÊÌâ¡£
+echo       - ÊÚÈ¨ÖØÖÃ£¨Rearm£©ÓĞÖúÓÚ½â¾ö¼¤»îÎÊÌâ¡£
 echo:
 echo       - Windows KMS ¼¤»î½«±»ÖØÖÃ¡£
 echo:
@@ -9560,8 +9569,8 @@ if %winbuild% LSS 22483 for /f "tokens=2 delims==" %%a in ('"wmic path %slp% whe
 if %winbuild% GEQ 22483 for /f "tokens=2 delims==" %%a in ('%_psc% "(([WMISEARCHER]'SELECT ID FROM %slp% WHERE ApplicationID=''%wApp%'' AND PartialProductKey IS NOT NULL').Get()).ID | %% {echo ('ID='+$_)}" 2^>nul') do call set "app=%%a"
 
 if defined app (
-if %winbuild% LSS 22483 for /f "tokens=2 delims==" %%x in ('"wmic path %slp% where ID='%app%' get Name /VALUE" 2^>nul') do echo Rearming: %%x
-if %winbuild% GEQ 22483 for /f "tokens=2 delims==" %%x in ('%_psc% "(([WMISEARCHER]'SELECT Name FROM %slp% WHERE ID=''%app%''').Get()).Name | %% {echo ('Name='+$_)}" 2^>nul') do echo Rearming: %%x
+if %winbuild% LSS 22483 for /f "tokens=2 delims==" %%x in ('"wmic path %slp% where ID='%app%' get Name /VALUE" 2^>nul') do echo ÕıÔÚÖØÖÃÊÚÈ¨£º%%x
+if %winbuild% GEQ 22483 for /f "tokens=2 delims==" %%x in ('%_psc% "(([WMISEARCHER]'SELECT Name FROM %slp% WHERE ID=''%app%''').Get()).Name | %% {echo ('Name='+$_)}" 2^>nul') do echo ÕıÔÚÖØÖÃÊÚÈ¨£º%%x
 echo:
 echo ÕıÔÚÓ¦ÓÃÃüÁî£¬
 if %winbuild% LSS 22483 (
@@ -9589,7 +9598,7 @@ goto :at_back
 
 cls
 mode 98, 30
-title  Office Rearm - ÌØ¶¨ KMS SKU ID
+title  Office ÊÚÈ¨ÖØÖÃ - Ö¸¶¨ KMS SKU ID
 
 if %winbuild% LSS 9600 (
 %eline%
@@ -9603,11 +9612,11 @@ echo %line%
 echo:   
 echo      ×¢£º
 echo:
-echo       - Rearm ÓĞÖúÓÚ½â¾ö¼¤»îÎÊÌâ¡£
+echo       - ÊÚÈ¨ÖØÖÃ£¨Rearm£©ÓĞÖúÓÚ½â¾ö¼¤»îÎÊÌâ¡£
 echo:
 echo       - Office KMS ¼¤»î½«±»ÖØÖÃ¡£
 echo:
-call :_color2 %_White% "      - " %Gray% "Office rearm Ö»ÄÜÓ¦ÓÃÒ»¶¨´ÎÊı¡£"
+call :_color2 %_White% "      - " %Gray% "Office ÊÚÈ¨ÖØÖÃÖ»ÄÜÓ¦ÓÃÒ»¶¨´ÎÊı¡£"
 echo:
 echo %line%
 echo:
@@ -9624,8 +9633,8 @@ call :getapplist %slp%
 if defined applist (
 for %%# in (%applist%) do (
 echo:
-if %winbuild% LSS 22483 for /f "tokens=2 delims==" %%x in ('"wmic path %slp% where ID='%%#' get Name /VALUE" 2^>nul') do echo Rearming: %%x
-if %winbuild% GEQ 22483 for /f "tokens=2 delims==" %%x in ('%_psc% "(([WMISEARCHER]'SELECT Name FROM %slp% WHERE ID=''%%#''').Get()).Name | %% {echo ('Name='+$_)}" 2^>nul') do echo Rearming: %%x
+if %winbuild% LSS 22483 for /f "tokens=2 delims==" %%x in ('"wmic path %slp% where ID='%%#' get Name /VALUE" 2^>nul') do echo ÕıÔÚÖØÖÃÊÚÈ¨£º%%x
+if %winbuild% GEQ 22483 for /f "tokens=2 delims==" %%x in ('%_psc% "(([WMISEARCHER]'SELECT Name FROM %slp% WHERE ID=''%%#''').Get()).Name | %% {echo ('Name='+$_)}" 2^>nul') do echo ÕıÔÚÖØÖÃÊÚÈ¨£º%%x
 echo:
 echo ÕıÔÚÓ¦ÓÃÃüÁî£¬
 if %winbuild% LSS 22483 (
@@ -9652,7 +9661,7 @@ call :getapplist %ospp%
 if defined applist (
 if %winbuild% LSS 9200 (set _off=Office) else (set _off=Office 2010)
 echo:
-echo ÕıÔÚÌø¹ı»ùÓÚ OSPP µÄ¡®!_off!¡¯Rearm
+echo ÕıÔÚÌø¹ı»ùÓÚ OSPP µÄ¡°!_off!¡±ÊÚÈ¨ÖØÖÃ
 )
 
 goto :at_back
